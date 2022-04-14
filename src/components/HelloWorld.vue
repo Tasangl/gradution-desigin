@@ -2,6 +2,9 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <el-button type="primary">按钮</el-button>
+    <router-link to="/user">
+      <el-button type="primary">按钮</el-button>
+    </router-link>
   </div>
 </template>
 
