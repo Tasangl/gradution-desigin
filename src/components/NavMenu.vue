@@ -1,5 +1,4 @@
 <template>
-  <div>
     <el-menu
       default-active="1-4-1"
       class="el-menu-vertical-demo"
@@ -10,19 +9,31 @@
       @close="handleClose"
       :collapse="isCollapse"
     >
-    <h3>地铁隧道环境监测系统</h3>
-      <el-menu-item @click="clickMenu(item)" v-for="item in singleNav" :index="item.path" :key="item.path">
+      <h3>地铁隧道环境监测系统</h3>
+      <el-menu-item
+        @click="clickMenu(item)"
+        v-for="item in singleNav"
+        :index="item.path"
+        :key="item.path"
+      >
         <i :class="`el-icon${item.icon}`"></i>
-        <span slot="title">{{item.label}}</span>
+        <span slot="title">{{ item.label }}</span>
       </el-menu-item>
-      <el-submenu v-for="item in MultipleNav" :index="item.path" :key="item.path">
+      <el-submenu
+        v-for="item in MultipleNav"
+        :index="item.path"
+        :key="item.path"
+      >
         <template slot="title">
           <i :class="`el-icon${item.icon}`"></i>
-          <span slot="title">{{item.label}}</span>
+          <span slot="title">{{ item.label }}</span>
         </template>
         <el-menu-item-group v-for="lab in item.children" :key="lab.path">
-          <el-menu-item :index="lab.path">{{lab.label}}</el-menu-item>
-         <!--  <el-menu-item index="1-2">湿度</el-menu-item>
+          <el-menu-item :index="lab.path">
+            <i :class="`el-icon${lab.icon}`"></i>
+            {{ lab.label }}</el-menu-item
+          >
+          <!--  <el-menu-item index="1-2">湿度</el-menu-item>
           <el-menu-item index="1-3">液位</el-menu-item>
           <el-menu-item index="1-4">热源</el-menu-item>
           <el-menu-item index="1-5">光强</el-menu-item> -->
@@ -46,7 +57,7 @@
         </el-menu-item-group>
       </el-submenu> -->
     </el-menu>
-  </div>
+
 </template>
 
 <script>
@@ -54,7 +65,6 @@ export default {
   name: 'NavMenu',
   data () {
     return {
-      isCollapse: false,
       menu: [
         {
           path: '/',
@@ -184,6 +194,9 @@ export default {
       return this.menu.filter((item) => {
         return item.children
       })
+    },
+    isCollapse () {
+      return this.$store.state.Tab.isCollapse
     }
   }
 }
@@ -191,17 +204,18 @@ export default {
 
 <style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width:200px;
-  min-height:400px;
+  width: 200px;
+  min-height: 400px;
 }
 .el-menu {
   height: 100%;
-  border:none;
-  h3{
+  border: none;
+  h3 {
     color: #fff;
     text-align: center;
-    line-height:28px
+    font-size: 16px;
+    line-height: 28px;
+    padding: 20px;
   }
 }
-
 </style>

@@ -1,28 +1,33 @@
 <template>
   <!-- <HelloWorld/> -->
-  <div>
     <el-container style="height:100%">
       <el-aside width="auto">
         <NavMenu/>
       </el-aside>
       <el-container>
-        <el-header>Header</el-header>
-        <el-main>Main</el-main>
+        <el-header>
+          <CommonHeader></CommonHeader>
+        </el-header>
+        <el-main>
+          <router-view></router-view>
+          <!-- 占位 -->
+        </el-main>
       </el-container>
     </el-container>
-  </div>
 </template>
 
 <script>
 import NavMenu from '../components/NavMenu.vue'
+import CommonHeader from '../components/CommonHeader.vue'
 export default {
   name: 'HomeView',
   components: {
-    NavMenu
+    NavMenu,
+    CommonHeader
   },
   data () {
     return {
-      info: 'Hello'
+
     }
   }
 }
@@ -30,25 +35,25 @@ export default {
 
 <style lang="less" scoped>
 
- .el-header, .el-footer {
+ .el-header {
     background-color: #000000;
-    color: #333;
+    /* color: #333;
     text-align: center;
-    line-height: 60px;
+    line-height: 60px; */
   }
 
-  .el-aside {
+/*   .el-aside {
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
     line-height: 20px;
   }
-
+ */
   .el-main {
-    background-color: #E9EEF3;
+    /* background-color: #E9EEF3;
     color: #333;
-    text-align: center;
-    line-height: 160px;
+    text-align: center; */
+    // line-height: 160px;
     padding-top: 0;
   }
 

@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <Home/>
+    <!-- <Home/> -->
+    <router-view></router-view>
   </div>
 </template>
 <script>
-import Home from './views/MainHome.vue'
+// import Home from './views/MainHome.vue'
 export default {
   components: {
-    Home
+    // Home
   }
 }
 </script>
-<style>
+<style lang="less" scoped>
 html,body{
   margin: 0;
   padding: 0;
