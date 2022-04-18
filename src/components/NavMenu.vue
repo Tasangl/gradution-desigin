@@ -10,6 +10,7 @@
       :collapse="isCollapse"
     >
       <h3>地铁隧道环境监测系统</h3>
+      <!-- 只含有一级菜单 -->
       <el-menu-item
         @click="clickMenu(item)"
         v-for="item in singleNav"
@@ -19,6 +20,7 @@
         <i :class="`el-icon${item.icon}`"></i>
         <span slot="title">{{ item.label }}</span>
       </el-menu-item>
+      <!-- 含有二级菜单的一级菜单 -->
       <el-submenu
         v-for="item in MultipleNav"
         :index="item.path"
@@ -29,10 +31,9 @@
           <span slot="title">{{ item.label }}</span>
         </template>
         <el-menu-item-group v-for="lab in item.children" :key="lab.path">
-          <el-menu-item :index="lab.path">
+          <el-menu-item :index="lab.path" @click="clickMenu(lab)">
             <i :class="`el-icon${lab.icon}`"></i>
-            {{ lab.label }}</el-menu-item
-          >
+            {{ lab.label }}</el-menu-item>
           <!--  <el-menu-item index="1-2">湿度</el-menu-item>
           <el-menu-item index="1-3">液位</el-menu-item>
           <el-menu-item index="1-4">热源</el-menu-item>
@@ -80,35 +81,35 @@ export default {
           icon: '-discover',
           children: [
             {
-              path: '/temperature',
+              path: '/display/temperature',
               name: 'temperature',
               label: '温度',
               icon: '-sunny',
               url: 'Display/temperature'
             },
             {
-              path: '/humidity',
+              path: '/display/humidity',
               name: 'humidity',
               label: '湿度',
               icon: '-heavy-rain',
               url: 'Display/liquid'
             },
             {
-              path: '/liquid',
+              path: '/display/liquid',
               name: 'liquid',
               label: '液位',
               icon: '-umbrella',
               url: 'Display/liquid'
             },
             {
-              path: '/heat',
+              path: '/display/heat',
               name: 'heat',
               label: '热源',
               icon: '-hot-water',
               url: 'Display/heat'
             },
             {
-              path: '/light',
+              path: '/display/light',
               name: 'light',
               label: '光照强度',
               icon: '-view',
@@ -132,39 +133,39 @@ export default {
           url: 'HistoryRecord/HistoryRecord',
           children: [
             {
-              path: '/temperature',
-              name: 'temperature',
+              path: '/record/historyTemperature',
+              name: 'historyTemperature',
               label: '温度',
               icon: '-sunny',
-              url: 'HistoryRecord/temperature'
+              url: 'HistoryRecord/historyTemperature'
             },
             {
-              path: '/humidity',
-              name: 'humidity',
+              path: '/record/historyHumidity',
+              name: 'historyHumidity',
               label: '湿度',
               icon: '-heavy-rain',
-              url: 'HistoryRecord/liquid'
+              url: 'HistoryRecord/historyHumidity'
             },
             {
-              path: '/liquid',
-              name: 'liquid',
+              path: '/record/historyLiquid',
+              name: 'historyLiquid',
               label: '液位',
               icon: '-umbrella',
-              url: 'HistoryRecord/liquid'
+              url: 'HistoryRecord/historyLiquid'
             },
             {
-              path: '/heat',
-              name: 'heat',
+              path: '/record/historyHeat',
+              name: 'historyHeat',
               label: '热源',
               icon: '-hot-water',
-              url: 'HistoryRecord/heat'
+              url: 'HistoryRecord/historyHeat'
             },
             {
-              path: '/light',
-              name: 'light',
+              path: '/record/historyLight',
+              name: 'historyLight',
               label: '光照强度',
               icon: '-view',
-              url: 'HistoryRecord/light'
+              url: 'HistoryRecord/historyLight'
             }
           ]
         }
@@ -181,7 +182,9 @@ export default {
     clickMenu (item) {
       this.$router.push({
         name: item.name
+        /* path: item.path */
       })
+      this.$store.commit('selectMenu', item)
     }
   },
   computed: {

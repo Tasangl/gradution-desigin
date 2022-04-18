@@ -8,6 +8,7 @@
         <el-header>
           <CommonHeader></CommonHeader>
         </el-header>
+        <CommonTag/>
         <el-main>
           <router-view></router-view>
           <!-- 占位 -->
@@ -19,11 +20,13 @@
 <script>
 import NavMenu from '../components/NavMenu.vue'
 import CommonHeader from '../components/CommonHeader.vue'
+import CommonTag from '../components/CommonTag.vue'
 export default {
   name: 'HomeView',
   components: {
     NavMenu,
-    CommonHeader
+    CommonHeader,
+    CommonTag
   },
   data () {
     return {

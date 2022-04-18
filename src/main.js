@@ -8,8 +8,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/less/index.less'
 import axios from 'axios'
 import '../api/mock'
+// import echarts from 'echarts'
+import * as echarts from 'echarts'
 Vue.prototype.axios = axios
+Vue.prototype.echarts = echarts
 Vue.use(ElementUI)
+
 Vue.config.productionTip = false
 
 new Vue({
