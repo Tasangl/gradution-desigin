@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie'
 export default {
   state: {
     isCollapse: false,
@@ -11,7 +12,8 @@ export default {
       }
     ],
     /* 记录所选面包屑，附加高亮效果 */
-    currentRouterMenu: null
+    currentRouterMenu: null,
+    menu: []
   },
   mutations: {
     collapseMenu (state) {
@@ -37,6 +39,39 @@ export default {
       const result = state.tabsList.findIndex(item => item.name === value.name)
       // 删除
       state.tabsList.splice(result, 1)
+    },
+    setMenu (state, value) {
+      state.menu = value
+      Cookie.set('menu', JSON.stringify(value))
+    },
+    clearMenu (state) {
+      state.menu = []
+      Cookie.remove('menu')
+    },
+    // 动态添加路由
+    addMenu (state, router) {
+      if (!Cookie.get('menu')) {
+        return
+      }
+      const menu = JSON.parse(Cookie.get('menu'))
+      state.menu = menu
+      const menuArray = []
+      menu.forEach(item => {
+        if (item.children) {
+          item.children = item.children.map(item => {
+            item.component = () => import(`../views/${item.url}`)
+            return item
+          })
+          menuArray.push(...item.children)
+        } else {
+          item.component = () => import(`../views/${item.url}`)
+          menuArray.push(item)
+        }
+      })
+      // 动态路由添加
+      menuArray.forEach(item => {
+        router.addRoutes('MainHome', item)
+      })
     }
   },
   actions: {

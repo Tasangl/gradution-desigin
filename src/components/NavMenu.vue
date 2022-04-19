@@ -66,7 +66,7 @@ export default {
   name: 'NavMenu',
   data () {
     return {
-      menu: [
+      /*  menu: [
         {
           path: '/',
           name: 'home',
@@ -169,7 +169,8 @@ export default {
             }
           ]
         }
-      ]
+      ] */
+      menu: []
     }
   },
   methods: {
@@ -189,17 +190,20 @@ export default {
   },
   computed: {
     singleNav () {
-      return this.menu.filter((item) => {
+      return this.asyncMenu.filter((item) => {
         return !item.children
       })
     },
     MultipleNav () {
-      return this.menu.filter((item) => {
+      return this.asyncMenu.filter((item) => {
         return item.children
       })
     },
     isCollapse () {
       return this.$store.state.Tab.isCollapse
+    },
+    asyncMenu () {
+      return this.$store.state.Tab.menu
     }
   }
 }

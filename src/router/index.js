@@ -13,7 +13,7 @@ const routes = [
     path: '/',
     name: 'MainHome',
     component: () => import('../views/MainHome.vue'),
-    children: [
+    /* children: [
       {
         path: '/home',
         name: 'home',
@@ -87,12 +87,9 @@ const routes = [
             component: () => import('../views/DisplayData/LightData.vue')
           }
         ]
-      }/* ,
-      {
-        //  重定向 访问/时，定向到首页
-        path: '*',
-        redirect: '/home'
-      } */
+      }
+    ] */
+    children: [
     ]
   },
   {
@@ -100,6 +97,12 @@ const routes = [
     name: 'login',
     component: () => import('../views/Login/LoginPage.vue')
   }
+  /* ,
+      {
+        //  重定向 访问/时，定向到首页
+        path: '*',
+        redirect: '/home'
+      } */
 ]
 
 const router = new VueRouter({
