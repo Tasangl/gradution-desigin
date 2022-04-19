@@ -190,19 +190,19 @@ export default {
   },
   computed: {
     singleNav () {
-      return this.asyncMenu.filter((item) => {
+      return this.syncMenu.filter((item) => {
         return !item.children
       })
     },
     MultipleNav () {
-      return this.asyncMenu.filter((item) => {
+      return this.syncMenu.filter((item) => {
         return item.children
       })
     },
     isCollapse () {
       return this.$store.state.Tab.isCollapse
     },
-    asyncMenu () {
+    syncMenu () {
       return this.$store.state.Tab.menu
     }
   }

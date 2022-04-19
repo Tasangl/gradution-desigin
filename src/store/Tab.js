@@ -70,7 +70,7 @@ export default {
       })
       // 动态路由添加
       menuArray.forEach(item => {
-        router.addRoutes('MainHome', item)
+        router.addRoute('MainHome', item)
       })
     }
   },
