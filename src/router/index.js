@@ -87,8 +87,12 @@ const routes = [
             component: () => import('../views/DisplayData/LightData.vue')
           }
         ]
+      },
+      {
+        //  重定向 访问/时，定向到首页
+        path: '*',
+        redirect: '/home'
       }
-
     ]
   }
 ]
