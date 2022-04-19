@@ -14,6 +14,19 @@ Vue.prototype.axios = axios
 Vue.prototype.echarts = echarts
 Vue.use(ElementUI)
 
+// 前置路由守卫
+router.beforeEach((to, from, next) => {
+  store.commit('getToken')
+  const token = store.state.user.token
+  if (!token && to.name !== 'login') {
+    next({ name: 'login' })
+  } else if (token && to.name === 'login') {
+    next({ name: 'home' })
+  } else {
+    next()
+  }
+})
+
 Vue.config.productionTip = false
 
 new Vue({

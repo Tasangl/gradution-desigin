@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Tab from './Tab'
+import user from './user'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
 
   },
   modules: {
-    Tab
+    Tab,
+    user
   }
 })

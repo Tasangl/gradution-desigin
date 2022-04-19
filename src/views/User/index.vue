@@ -23,18 +23,29 @@
         :inline="true"
         ref="form"
       >
-        <el-button type="primary" @click="getList">搜索</el-button>
+        <el-button type="primary" @click="getList(searchForm.keyword)">搜索</el-button>
       </CommonForm>
     </div>
+    <CommonTable
+      :tableData="tableData"
+      :tableLabel="tableLabel"
+      :config="config"
+      @changePage="getList()"
+      @edit="editUser"
+      @del="delUser"
+    ></CommonTable>
   </div>
 </template>
 
 <script>
 import CommonForm from '../../components/CommonForm.vue'
+import CommonTable from '../../components/CommonTable.vue'
+import { getUser } from '../../../api/data'
 export default {
   name: 'userTable',
   components: {
-    CommonForm
+    CommonForm,
+    CommonTable
   },
   data () {
     return {
@@ -93,6 +104,35 @@ export default {
       ],
       searchForm: {
         keyword: ''
+      },
+      tableData: [],
+      tableLabel: [
+        {
+          prop: 'name',
+          label: '姓名'
+        },
+        {
+          prop: 'age',
+          label: '年龄'
+        },
+        {
+          prop: 'sexLabel',
+          label: '性别'
+        },
+        {
+          prop: 'birth',
+          label: '出生日期',
+          width: 200
+        },
+        {
+          prop: 'addr',
+          label: '地址',
+          width: 320
+        }
+      ],
+      config: {
+        page: 1,
+        total: 30
       }
     }
   },
@@ -103,11 +143,13 @@ export default {
         this.axios.post('/user/edit', this.operateForm).then(res => {
           console.log(res)
           this.isShow = false
+          this.getList()
         })
       } else {
         this.axios.post('/user/add', this.operateForm).then(res => {
           console.log(res)
           this.isShow = false
+          this.getList()
         })
       }
     },
@@ -122,7 +164,50 @@ export default {
         sex: ''
       }
     },
-    getList () {}
+    getList (name = '') {
+      // 获取数据前获取loading
+      this.config.loading = true
+      // eslint-disable-next-line no-unused-expressions
+      name ? (this.config.page = 1) : ''
+      getUser({
+        page: this.config.page,
+        name
+      }).then(({ data: res }) => {
+        this.tableData = res.list.map(item => {
+          item.sexLabel = item.sex === 0 ? '女' : '男'
+          return item
+        })
+        this.config.total = res.count
+        this.config.loading = true
+      })
+    },
+    editUser (row) {
+      this.operateType = 'edit'
+      this.isShow = true
+      console.log(row)
+      this.operateForm = JSON.parse(JSON.stringify(row))
+    },
+    delUser (row) {
+      this.$confirm('此操作不可逆，是否继续', '提示', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        const id = row.id
+        this.axios.post('user/del', {
+          id: id
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功'
+          })
+          this.getList()
+        })
+      })
+    }
+  },
+  created () {
+    this.getList()
   }
 }
 </script>

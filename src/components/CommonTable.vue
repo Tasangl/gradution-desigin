@@ -19,6 +19,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      class="pager"
+      layout="prev, pager, next"
+      :current-page.sync="config.page"
+      @current-change="changPage"
+      :total="config.total"
+      :page-size="20"
+      >
+    </el-pagination>
   </div>
 </template>
 
@@ -30,18 +39,32 @@ export default {
   },
   props: {
     tableData: Array,
-    tableLabel: Array
+    tableLabel: Array,
+    config: Object
   },
   methods: {
-    handleEdit () {
-
+    handleEdit (row) {
+      this.$emit('edit', row)
     },
-    handleDelete () {
-
+    handleDelete (row) {
+      this.$emit('del', row)
+    },
+    changPage (page) {
+      this.$emit('changePage', page)
     }
   }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+.CommonTable{
+  height:calc(100% - 62px);
+  background-color: #fff;
+  position: relative;
+  .pager{
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+  }
+}
 </style>
