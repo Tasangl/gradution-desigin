@@ -18,7 +18,7 @@
     "mockjs": "^1.1.0",
     "reset.less": "^1.0.5",
     "vue": "^2.6.14",
-    "vue-router": "^3.5.1",
+    "vue-router": "^3.5.3",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
