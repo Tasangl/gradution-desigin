@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/less/index.less'
 import axios from 'axios'
 import '../api/mock'
+import 'mockjs'
 // import echarts from 'echarts'
 import * as echarts from 'echarts'
 Vue.prototype.axios = axios

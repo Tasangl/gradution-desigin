@@ -21,6 +21,7 @@
 </template>
 
 <script>
+
 import { getMenu } from '../../../api/data'
 export default {
   name: 'LoginPage',
