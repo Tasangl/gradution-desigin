@@ -94,13 +94,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('../views/Login/LoginPage.vue')
+  },
+  {
+    //  重定向 访问/时，定向到首页
+    path: '/',
+    redirect: '/home'
   }
-  /* ,
-      {
-        //  重定向 访问/时，定向到首页
-        path: '*',
-        redirect: '/home'
-      } */
 ]
 
 const router = new VueRouter({
