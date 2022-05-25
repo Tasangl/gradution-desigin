@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="login-info">
-          <p>上次登录时间：<span>2022-3-8</span></p>
+          <p>本次登录时间：<span>{{currentTime}}</span></p>
         </div>
       </el-card>
       <!-- 商品列表 -->
@@ -83,28 +83,28 @@ export default {
       },
       countData: [
         {
-          name: '今日支付订单',
-          value: 1234,
+          name: '当前温度',
+          value: 23,
           icon: 'success',
           color: '#2ec7c9'
         },
-        { name: '今日收藏订单', value: 210, icon: 'star-on', color: '#ffb980' },
+        { name: '当前人流量', value: 2100, icon: 'star-on', color: '#ffb980' },
         {
-          name: '今日未支付订单',
-          value: 1234,
+          name: '当前湿度',
+          value: 34,
           icon: 's-goods',
           color: '#5ab1ef'
         },
         {
-          name: '本月支付订单',
-          value: 1234,
+          name: '当前光照强度',
+          value: 123,
           icon: 'success',
           color: '#2ec7c9'
         },
-        { name: '本月收藏订单', value: 210, icon: 'star-on', color: '#ffb980' },
+        { name: '当前热源', value: 210, icon: 'star-on', color: '#ffb980' },
         {
-          name: '本月未支付订单',
-          value: 1234,
+          name: '当前液位',
+          value: 0,
           icon: 's-goods',
           color: '#5ab1ef'
         }
@@ -122,7 +122,8 @@ export default {
           // xData:[],
           series: []
         }
-      }
+      },
+      currentTime: ''
     }
   },
   components: {
@@ -222,12 +223,12 @@ export default {
         this.echartData.user.xData = data.userData.map(item => item.date)
         this.echartData.user.series = [
           {
-            name: '新增用户',
+            name: '新增节点',
             data: data.userData.map(item => item.new),
             type: 'bar'
           },
           {
-            name: '活跃用户',
+            name: '总节点',
             data: data.userData.map(item => item.active),
             type: 'bar'
           }
@@ -258,6 +259,26 @@ export default {
       }
       console.log(res)
     })
+    const yy = new Date().getFullYear()
+    const mm = new Date().getMonth() + 1
+    const dd = new Date().getDate()
+    const hh = new Date().getHours()
+    const mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()
+    const ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds()
+    this.currentTime = yy + '/' + mm + '/' + dd + ' ' + hh + ':' + mf + ':' + ss
+  },
+  methods: {
+    getCurrentTime () {
+      // 获取当前时间并打印
+      const yy = new Date().getFullYear()
+      const mm = new Date().getMonth() + 1
+      const dd = new Date().getDate()
+      const hh = new Date().getHours()
+      const mf = new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()
+      const ss = new Date().getSeconds() < 10 ? '0' + new Date().getSeconds() : new Date().getSeconds()
+      this.currentTime = yy + '/' + mm + '/' + dd + ' ' + hh + ':' + mf + ':' + ss
+      console.log(this.currentTime)
+    }
   }
 }
 </script>

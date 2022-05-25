@@ -9,12 +9,12 @@ export default {
     for (let i = 0; i < 7; i++) {
       List.push(
         Mock.mock({
-          苹果: Mock.Random.float(100, 8000, 0, 0),
-          vivo: Mock.Random.float(100, 8000, 0, 0),
-          oppo: Mock.Random.float(100, 8000, 0, 0),
-          魅族: Mock.Random.float(100, 8000, 0, 0),
-          三星: Mock.Random.float(100, 8000, 0, 0),
-          小米: Mock.Random.float(100, 8000, 0, 0)
+          温度: Mock.Random.float(0, 40, 0, 0),
+          湿度: Mock.Random.float(0, 100, 0, 0),
+          液位: Mock.Random.float(0, 10, 0, 0),
+          光照强度: Mock.Random.float(0, 300, 0, 0),
+          热源: Mock.Random.float(100, 200, 0, 0),
+          // 小米: Mock.Random.float(100, 8000, 0, 0)
         })
       )
     }
@@ -24,28 +24,24 @@ export default {
         // 饼图
         videoData: [
           {
-            name: '小米',
+            name: '温度',
             value: 2999
           },
           {
-            name: '苹果',
+            name: '湿度',
             value: 5999
           },
           {
-            name: 'vivo',
+            name: '液位',
             value: 1500
           },
           {
-            name: 'oppo',
+            name: '热源',
             value: 1999
           },
           {
-            name: '魅族',
+            name: '光照强度',
             value: 2200
-          },
-          {
-            name: '三星',
-            value: 4500
           }
         ],
         // 柱状图
@@ -58,37 +54,37 @@ export default {
           {
             date: '周二',
             new: 10,
-            active: 500
+            active: 210
           },
           {
             date: '周三',
             new: 12,
-            active: 550
+            active: 222
           },
           {
             date: '周四',
             new: 60,
-            active: 800
+            active: 282
           },
           {
             date: '周五',
             new: 65,
-            active: 550
+            active: 347
           },
           {
             date: '周六',
             new: 53,
-            active: 770
+            active: 400
           },
           {
             date: '周日',
             new: 33,
-            active: 170
+            active: 433
           }
         ],
         // 折线图
         orderData: {
-          date: ['20191001', '20191002', '20191003', '20191004', '20191005', '20191006', '20191007'],
+          date: ['202205021', '202205022', '202205023', '202205024', '202205025', '202205026', '202205027'],
           data: List
         },
         tableData: [
