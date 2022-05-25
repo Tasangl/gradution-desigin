@@ -85,7 +85,6 @@ export default {
             console.log('LD', this.LD)
             console.log('LDT', this.LDT)
             // console.log('DDDDDDD', this.tableData[0].dateLight)
-            const DT = order[0]
             console.log('DT', order[0])
             const keyArray = Object.keys(order[0]).slice(1)
             const xData = this.LDT.reverse()
