@@ -46,9 +46,10 @@ export const getLiquidData = () => {
     methods: 'get'
   })
 }
-export const getLigthData = () => {
+/* export const getLightData = () => {
   return axios.request({
     url: 'http://47.95.11.134:11451/data/light',
-    methods: 'get'
+    methods: 'post'
   })
 }
+ */

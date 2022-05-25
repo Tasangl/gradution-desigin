@@ -28,8 +28,10 @@ export default {
     getHumidityData().then(res => {
       console.log(res)
       const { code, data } = res.data
+      console.log('CCC', code)
       if (code === 20000) {
         const order = data.orderData
+        // console.log('AAA', order)
         const keyArray = Object.keys(order.data[0])
         const xData = order.date
         // console.log('@@@',keyArray)

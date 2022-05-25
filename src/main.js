@@ -11,6 +11,9 @@ import '../api/mock'
 import 'mockjs'
 // import echarts from 'echarts'
 import * as echarts from 'echarts'
+
+import { getLightData } from '../api/request'
+getLightData()
 Vue.prototype.axios = axios
 Vue.prototype.echarts = echarts
 Vue.use(ElementUI)

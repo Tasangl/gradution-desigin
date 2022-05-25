@@ -96,7 +96,9 @@ export default {
             name: 'oppo',
             todayBuy: 500,
             monthBuy: 3500,
-            totalBuy: 22000
+            totalBuy: {
+              monthBuy: []
+            }
           },
           {
             name: 'vivo',
